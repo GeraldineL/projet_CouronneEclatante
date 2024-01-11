@@ -24,6 +24,9 @@ class Auteur
     #[ORM\Column(length: 255)]
     private ?string $prenom_Auteur = null;
 
+    #[ORM\ManyToOne(inversedBy: 'auteurs')]
+    private ?Produit $Produit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class Auteur
     public function setPrenomAuteur(string $prenom_Auteur): static
     {
         $this->prenom_Auteur = $prenom_Auteur;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->Produit;
+    }
+
+    public function setProduit(?Produit $Produit): static
+    {
+        $this->Produit = $Produit;
 
         return $this;
     }

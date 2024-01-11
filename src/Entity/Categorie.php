@@ -28,6 +28,9 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $ProgrammeCE2 = null;
 
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    private ?Produit $Produit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Categorie
     public function setProgrammeCE2(string $ProgrammeCE2): static
     {
         $this->ProgrammeCE2 = $ProgrammeCE2;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->Produit;
+    }
+
+    public function setProduit(?Produit $Produit): static
+    {
+        $this->Produit = $Produit;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DetailsCommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DetailsCommandeRepository::class)]
@@ -24,6 +26,17 @@ class DetailsCommande
 
     #[ORM\Column(length: 255)]
     private ?string $Quantite_produit = null;
+
+    #[ORM\ManyToOne(inversedBy: 'detailsCommandes')]
+    private ?Commande $Commande = null;
+
+    #[ORM\OneToMany(mappedBy: 'DetailsCommande', targetEntity: Produit::class)]
+    private Collection $produits;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +87,48 @@ class DetailsCommande
     public function setQuantiteProduit(string $Quantite_produit): static
     {
         $this->Quantite_produit = $Quantite_produit;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->Commande;
+    }
+
+    public function setCommande(?Commande $Commande): static
+    {
+        $this->Commande = $Commande;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): static
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits->add($produit);
+            $produit->setDetailsCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): static
+    {
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getDetailsCommande() === $this) {
+                $produit->setDetailsCommande(null);
+            }
+        }
 
         return $this;
     }
