@@ -1,1 +1,0 @@
-<!-- c'est un test pour voir comment fonctionne le merge sur git -->

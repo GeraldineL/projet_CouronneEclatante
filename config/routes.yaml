@@ -3,14 +3,7 @@ controllers:
     type: attribute
  # config/routes.yaml
 
- #/couronne redirige vers l'action accueil de mon contrôleur CouronneController
-couronne_eclatante:
-    path: /couronne
-    controller: App\Controller\CouronneController::accueil
-
-
-#/couronne/produits redirige vers l'action produits de mon contrôleur CouronneController
-couronne_produits:
-    path: /couronne/produits
-    controller: App\Controller\CouronneController::produits
+home:
+    path: /
+    controller: App\Controller\HomeController::index
 
