@@ -32,13 +32,21 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+            // Ici,on peut traiter les données du formuaire par exemple envoyer un email
 
-            return $this->redirectToRoute('_profiler_home');
-        }
+        // Traiter les données du formulaire, par exemple, j'enregistre l'utilisateur dans la base de données
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+        return $this->redirectToRoute('registration_success');
     }
+
+       /* Pour avoir la vue du formulaire */
+       return $this->render('registration/register.html.twig', [
+        'registrationForm' => $form->createView(),
+    ]);
 }
+}         
+
+          #  return $this->redirectToRoute('_profiler_home');
+        
+   
+

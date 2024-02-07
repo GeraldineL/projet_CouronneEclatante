@@ -11,7 +11,7 @@ class LivresNumeriquesController extends AbstractController
     #[Route('/livres/numeriques', name: 'app_livres_numeriques')]
     public function index(): Response
     {
-        return $this->render('livres_numeriques/index.html.twig', [
+        return $this->render('livres_numeriques/livres_numeriques.html.twig', [
             'controller_name' => 'LivresNumeriquesController',
         ]);
     }
