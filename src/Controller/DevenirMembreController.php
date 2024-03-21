@@ -11,7 +11,7 @@ class DevenirMembreController extends AbstractController
     #[Route('/devenir/membre', name: 'app_devenir_membre')]
     public function index(): Response
     {
-        return $this->render('devenir_membre/devenir_membre.html.twig', [
+        return $this->render('registration/register.html.twig', [
             'controller_name' => 'DevenirMembreController',
         ]);
     }

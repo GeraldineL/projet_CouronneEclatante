@@ -1,0 +1,8 @@
+<?php
+
+    echo "Server start";
+
+    echo "\n";
+    echo "\n";
+
+    exec("php -S 127.0.0.1:8000 -t public -d display_errors=1");

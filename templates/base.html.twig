@@ -4,6 +4,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Couronne Eclatante{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
         {# ligne de code qui relie le fichier base.html.twig au fichier css pour le rendu visuel du site #}
 
@@ -28,7 +30,9 @@
   {# Code bootstrap pour afficher menu de navigation  #} 
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm ">
       <div class="container-fluid">
-          <a class="navbar-brand" href="{{path('home')}}">Couronne<span class="text-primary">Eclatante</span></a>
+      {# lien pour accéder à la page principale 'home'#}
+      {#  Couleur du texte Eclatante= text-pink situé dans la nav bar et stylisé dans le fichier style.css   #}
+          <a class="navbar-brand" href="{{path('home')}}">Couronne<span class="text-pink">Eclatante</span></a>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -50,11 +54,11 @@
                       <a class="nav-link" href="{{path('app_contact')}}">Contact</a>
                   </li>
                   
-                  <a href="{{path('app_devenir_membre')}}" class="btn btn-primary my-3 my-lg-0">Connexion</a> {# pour se connecter au site peu importe le statut de l'utilisateur #}
-                  <a href="{{path('app_devenir_membre')}}" class="btn btn-light my-3 my-lg-0 mx-lg-2">Devenir Membre</a>{# Formulaire d'inscription #}
+                  <a href="{{path('app_login')}}" class="btn btn-pink my-3 my-lg-0">Connexion</a> {# pour se connecter au site peu importe le statut de l'utilisateur #}
+                  <a href="{{path('app_register')}}" class="btn btn-pink my-3 my-lg-0 mx-lg-2">Devenir Membre</a>{# Formulaire d'inscription #}
                 
               </ul>
-              {% if app.user %}
+              {% if app.user %} {# si l'user est connecté #}
               <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                       <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
@@ -75,7 +79,7 @@
                     <div class="input-group">
                         <form class="d-flex" role="search">
                             <input class="form-control" type="search" placeholder="Rechercher un produit" aria-label="Rechercher un produit">
-                            <button id="search-button" type="submit" class="btn btn-primary">
+                            <button id="search-button" type="submit" class="btn btn-pink">
                                 <i class="fas fa-search"></i>
                             </button>                    
                         </form>

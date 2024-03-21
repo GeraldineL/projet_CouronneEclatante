@@ -41,7 +41,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
-
+//Le premier endroit où on voit qu'on est connecté
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {

@@ -33,13 +33,12 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'Produit', targetEntity: Auteur::class)]
     private Collection $auteurs;
 
-    #[ORM\OneToMany(mappedBy: 'Produit', targetEntity: Categorie::class)]
-    private Collection $categories;
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {
         $this->auteurs = new ArrayCollection();
-        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,32 +136,14 @@ class Produit
         return $this;
     }
 
-    /**
-     * @return Collection<int, Categorie>
-     */
-    public function getCategories(): Collection
+    public function getCategorie(): ?Categorie
     {
-        return $this->categories;
+        return $this->categorie;
     }
 
-    public function addCategory(Categorie $category): static
+    public function setCategorie(?Categorie $categorie): static
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->setProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categorie $category): static
-    {
-        if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getProduit() === $this) {
-                $category->setProduit(null);
-            }
-        }
+        $this->categorie = $categorie;
 
         return $this;
     }

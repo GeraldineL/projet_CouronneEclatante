@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -30,17 +32,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Nom = null;
+    private ?string $nom = null;
 
-    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private $created_at;
+    // #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    // private $createdAt;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $telephone = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresseFacturation = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $villeFacturation = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $codeFacturation = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
+    private Collection $Commande;
 
     public function __construct()
     {
-        $this->created_at = new \DateTimeImmutable();  
+        //$this->createdAt = new \DateTimeImmutable();  
 				# En d'autres termes, cette ligne est utilisée pour définir 
 				#la valeur de la propriété "created_at" sur la date et l'heure 
 				#actuelles.
+    $this->Commande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,7 +98,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';// toute personne connectée a le rôle USER
 
         return array_unique($roles);
     }
@@ -115,13 +136,82 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): static
+    public function setNom(string $nom): static
     {
-        $this->Nom = $Nom;
+        $this->nom = $nom;
 
         return $this;
     }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): static
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): static
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?string
+    {
+        return $this->adresseFacturation;
+    }
+
+    public function setAdresseFacturation(?string $adresseFacturation): static
+    {
+        $this->adresseFacturation = $adresseFacturation;
+
+        return $this;
+    }
+
+    public function getVilleFacturation(): ?string
+    {
+        return $this->villeFacturation;
+    }
+
+    public function setVilleFacturation(?string $VilleFacturation): static
+    {
+        $this->villeFacturation = $VilleFacturation;
+
+        return $this;
+    }
+
+    public function getCodeFacturation(): ?string
+    {
+        return $this->codeFacturation;
+    }
+
+    public function setCodeFacturation(?string $codeFacturation): static
+    {
+        $this->codeFacturation = $codeFacturation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommande(): Collection
+    {
+        return $this->Commande;
+    }
+
 }

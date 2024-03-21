@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.tailleImage{
+    width: 150px;
+    /* 1rem=16px */
+    /* 10rem=160px */
+}
+
+div.navbar-toggler#essaitoggler{
+    background-color: antiquewhite;
+}
+
+.bg-pink{
+    background-color: pink;
+}
+
+/* Couleur du texte Eclatante situé dans la nav bar qui est dans le fichier base.html */
+.text-pink {
+    color:pink;
+}
+
+/*
+test de couleur du background en violet (purple)
+.bg-purple {
+    background-color: purple;
+    
+} */
+*
+/* Pour la couleur en dégradé rose/bleue de: la section accueil du portfolio, la section à propos, la section gardons contactsituées dans le fichier index.html */
+.bg-linear {
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(229,85,189,0.9332866935836834) 98%);
+}
+
+
+/* Couleur du bouton Devenir membre, connexion situés dans la nav bar, localisé dans le fichier base.html */
+.btn-pink {
+    background-color: pink;
+     
+}
+
+/* Pour la couleur qui reste affichée quand on passe la souris sur le bouton Connexion de la barre de navigation (nav bar située dans le fichier base.html */
+.btn-pink:hover {
+    background-color: pink;
+    /* color: ; */
+}
+

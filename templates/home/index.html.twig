@@ -3,8 +3,272 @@
 {% block title %}Accueil - Couronne Eclatante{% endblock %}
 
 {% block body %}
-         <img src="{{asset('images/beautiful_purple_birds.jpg')}}" alt="Image de présentation" class"img500px">
-        <h2>Découvrez une expérience exceptionnelle pour gérer vos émotions...</h2>
+         {# <img src="{{asset('images/beautiful_purple_birds.jpg')}}" alt="Image de présentation" class"img500px">
+        <h2>Découvrez une expérience exceptionnelle pour gérer vos émotions...</h2> #}
+
+            <!-- 2.1 Section accueil du portfolio : .bg-dark.text-white.d-flex.flex-column.align-items-center.text-center.mt-5.p-3 + E
+            bg-linear est la couleur de fond (background de la section accueil du portfolio) qui est stylisée dans le fhichier style.css #} -->
+    <div class="bg-linear text-white d-flex align-items-center h-75 flex-column text-center mt-5 p-3">
+
+        <!-- 2.2 on crée 2 div : .mt-auto (Permet de dispatcher l'espace libre restant de la div parente entre les deux div enfants)-->
+        <div class="mt-auto">
+
+            <!-- 2.3 Ici créer le css de la classe imgProfil -> voir style.css -->
+            <img src="/images/Couronne_Eclatante.jpg" alt="image de Couronne Eclatante" class="imgProfil">
+            <h1>Bienvenue sur le site de Couronne Eclatante!</h1>
+            <p>Développement Personnel, Gestion des émotions et des relations interpersonnelles... Vous êtes au bon endroit!</p>
+            <a href="" class="btn btn-pink btn-lg">En savoir plus</a>
+        </div>
+        <div class="mt-auto">
+            <p>Lorem ipsum</p>
+        </div>
+    </div>
+
+    <!-- 3.1 Section portfolio -->
+    <section class="py-5" id="portfolio">
+        <h2 class="text-uppercase text-center mb-5">Portfolio</h2>
+        <div class="container">
+            <!-- 3.2 row-cols est une classe BS qui permet de définir directement dans une row le nombre de colonne que l'on veut en fonction de la taille de l'écran (ex pour row-cols-1 nous aurons une seule colonne dès le mode mobile et pour toutes les autres largeurs, si l'on ajoute row-cols-md-2, nous aurons deux colonnes dès le mode tablette) -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <!-- 3.3 Classe card BS -> Voir la doc -->
+                    <div class="card">
+                        <img src="/images/programme1.jpg" class="card-img-top" alt="image du site Programme Couronne Eclatante 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Site Programme Couronne Eclatante 1</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex">
+                                {# <a href="#" class="btn btn-outline-secondary btn-sm me-2">Code Source</a> #}
+                                <a href="https://couronne-s-school.thinkific.com/" class="btn btn-outline-secondary btn-sm">Accès au Programme Couronne Eclatante1</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/programme2.jpg" class="card-img-top" alt="image du site Programme Couronne Eclatnte 2"> {# img-fluid au lieu de card-img-top? #}
+                        <div class="card-body">
+                            <h5 class="card-title">Site Programme Couronne Eclatante2</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://couronne-s-school.thinkific.com/courses/programme-couronne-eclatante-2" class="btn btn-outline-secondary btn-sm">Accès au Programme Couronne Eclatante2</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/livres_numeriques.jpg" class="card-img-top img-fluid" alt="image de livres numeriques UI/UX">
+                        <div class="card-body">
+                            <h5 class="card-title">Livres Numériques</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="#" class="btn btn-outline-secondary btn-sm">Accéder aux livres numériques</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/blog.jpg" class="card-img-top" alt="image du blog">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Couronne Eclatante</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://couronneclatante.wordpress.com/" class="btn btn-outline-secondary btn-sm">Voir le Blog</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/cuisine.jpg" class="card-img-top" alt="image du blog cuisine">
+                        <div class="card-body">
+                            <h5 class="card-title">La Cuisine de Couronne Eclatante</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://couronneclatante.wixsite.com/my-site" class="btn btn-outline-secondary btn-sm">Voir le Blog Cuisine de Couronne Eclatante</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/podcast.jpg" class="card-img-top" alt="image du podcast">
+                        <div class="card-body">
+                            <h5 class="card-title">Podcasts</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://podcasters.spotify.com/pod/show/couronne-eclatante" class="btn btn-outline-secondary btn-sm">Accéder aux Podcasts</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/fiverr.jpg" class="card-img-top" alt="image de fiverr">
+                        <div class="card-body">
+                            <h5 class="card-title">Services de traduction Fiverr</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://www.fiverr.com/crownfair/translation-in-four-languages" class="btn btn-outline-secondary btn-sm">Accéder au service de traduction Fiverr</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/polyglot.jpg" class="card-img-top" alt="image de polyglot">
+                        <div class="card-body">
+                            <h5 class="card-title">Service de traduction PolyglotClub</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://polyglotclub.com/services/jobs/general-translation/translation-in-four-languages/" class="btn btn-outline-secondary btn-sm">Voir le service de traduction PolyglotClub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="/images/findestemps.png" class="card-img-top" alt="image fin des temps">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Les Temps de la fin</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia molestias ipsum adipisci maxime?</p>
+                            <div class="d-flex justify-content-around">
+                            {# <a href="#" class="btn btn-outline-secondary btn-sm">Code Source</a> #}
+                            <a href="https://lestempsdelafincouronneclatante.over-blog.com/" class="btn btn-outline-secondary btn-sm ">Voir le blog</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4.1 Section A propos -->
+    {# bg-linear est la couleur du background de la partie à propos qui est stylisée dans le fhichier style.css #}
+    <section class="bg-linear  text-white" id="about">
+        <div class="container py-5">
+            <h2 class="text-center text-uppercase">A propos</h2>
+            <div class="row g-3 mt-3">
+                <div class="col-lg-4 ms-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam laoreet purus. Mauris laoreet sem at pharetra sollicitudin. Duis aliquam a ante vel convallis. Nullam in diam in sem cursus vehicula. Nulla consequat quis leo nec laoreet. Donec tincidunt velit non massa ornare luctus
+                </div>
+                <div class="col-lg-4 me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam laoreet purus. Mauris laoreet sem at pharetra sollicitudin. Duis aliquam a ante vel convallis. Nullam in diam in sem cursus vehicula. Nulla consequat quis leo nec laoreet. Donec tincidunt velit non massa ornare luctus
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a class="btn btn-outline-light" href="#">Contactez-moi</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mb-5" id="services">
+        <h2 class="text-center text-uppercase my-5">Mes services</h2>
+        <!-- 5.1 Création d'une row qui va contenir nos 3 colonnes en d-flex pour aligner les éléments qui seront séparés de manière centrée (de base l'html est instancié en display block (d-block) donc les éléments sont empliés les uns sur les autres. Avec d-flex, on change cette propriété qui équivaut à un display in-line) -->
+        <div class="row d-flex justify-content-center ">
+            <!-- 5.2 on passe chaque col aussi en d-flex pour pouvoir manipuler les éléments, ici on veut avoir le contenu de chaque col de manière empilée donc on ajoute la classe flex-column et pour justifier le tout de maniere centré, ici on utilise align-items-center -->
+            <div class="col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                <img src="/images/programme1.jpg" alt="" width="120">
+                <h2 class="text-center">Programme Couronne Eclatante1</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, officiis reiciendis. Facilis, architecto nemo maxime molestias sed nam odit saepe quisquam corporis, quibusdam in nihil dolores ab, consequatur distinctio aspernatur!</p>
+                <!-- 5.3 Insertion des attributs data-bs-toggle et target sur le bouton pour ouvrir une modal -->
+                <a href="" class="btn btn-secondary" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Voir le programme1</a>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                <img src="/images/programme2.jpg" alt="" width="120">
+                <h2 class="text-center">Programme Couronne Eclatatante2</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, officiis reiciendis. Facilis, architecto nemo maxime molestias sed nam odit saepe quisquam corporis, quibusdam in nihil dolores ab, consequatur distinctio aspernatur!</p>
+                <a href="" class="btn btn-secondary" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Voir le programme2</a>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                <img src="/images/fiverr.jpg" alt="" width="140">
+                <h2 class="text-center">Service de traduction Fiverr</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, officiis reiciendis. Facilis, architecto nemo maxime molestias sed nam odit saepe quisquam corporis, quibusdam in nihil dolores ab, consequatur distinctio aspernatur!</p>
+                <a href="" class="btn btn-secondary" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Voir service de traduction Fiverr</a>
+            </div>
+        </div>
+        <!-- 5.4 Modal BS associée au 1er bouton qui a pour target l'id de cette modal -->
+        <!-- Modal Vue-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    ...
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Angular -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis voluptate deleniti id aspernatur adipisci suscipit a iure est hic veritatis. Harum omnis sequi quisquam accusamus, vitae quia asperiores iste ut!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 6.1 Formulaire de contact -->
+    {# bg-linear est la couleur du background de la partie formulaire de contact qui est stylisée dans le fhichier style.css #}
+    <section class="bg-linear  text-white" id="contact">
+        <div class="container">
+            <h2 class="text-center">Restons en contact</h2>
+            <form action="https://www.localhost/nomdetaroute" method="post">
+                <div class="row d-flex g-3">
+                    <div class="col-lg-6">
+                        <label for="form_firstname">Prénom *</label>
+                        <input type="text" id="form_firstname" class="form-control" name="firstnameForm">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="form_lastname">Nom *</label>
+                        <input type="text" id="form_lastname" class="form-control" name="lastnameForm">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="form_email">Email *</label>
+                        <input type="email" name="emailForm" id="form_email" placeholder="indiquer un email valide" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="form_message">Message *</label>
+                        <textarea name="messageForm" class="form-control" id="form_message" rows="10"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success mb-5">Envoyer ma demande de contact</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    
+    <script src="/js/script.js"></script>
 
 {% endblock %}
 

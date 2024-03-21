@@ -18,18 +18,28 @@ class Commande
     #[ORM\Column(length: 255)]
     private ?string $id_commande = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?Utilisateur $Utilisateur = null;
-
     #[ORM\OneToMany(mappedBy: 'Commande', targetEntity: DetailsCommande::class)]
     private Collection $detailsCommandes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $User = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $manytoone = null;
+
     #[ORM\ManyToOne(inversedBy: 'Commande')]
-    private ?Utilisateur $utilisateur = null;
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'DetailsCommande')]
+    private ?self $detailscommande = null;
+
+    #[ORM\OneToMany(mappedBy: 'detailscommande', targetEntity: self::class)]
+    private Collection $DetailsCommande;
 
     public function __construct()
     {
         $this->detailsCommandes = new ArrayCollection();
+        $this->DetailsCommande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -45,18 +55,6 @@ class Commande
     public function setIdCommande(string $id_commande): static
     {
         $this->id_commande = $id_commande;
-
-        return $this;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->Utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $Utilisateur): static
-    {
-        $this->Utilisateur = $Utilisateur;
 
         return $this;
     }
@@ -87,6 +85,42 @@ class Commande
                 $detailsCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?string
+    {
+        return $this->User;
+    }
+
+    public function setUser(string $User): static
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+    public function getManytoone(): ?string
+    {
+        return $this->manytoone;
+    }
+
+    public function setManytoone(string $manytoone): static
+    {
+        $this->manytoone = $manytoone;
+
+        return $this;
+    }
+
+    public function getDetailscommande(): ?self
+    {
+        return $this->detailscommande;
+    }
+
+    public function setDetailscommande(?self $detailscommande): static
+    {
+        $this->detailscommande = $detailscommande;
 
         return $this;
     }

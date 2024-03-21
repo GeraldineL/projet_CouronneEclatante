@@ -26,7 +26,7 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData() 
                 )
             );
 
@@ -36,7 +36,7 @@ class RegistrationController extends AbstractController
 
         // Traiter les données du formulaire, par exemple, j'enregistre l'utilisateur dans la base de données
 
-        return $this->redirectToRoute('registration_success');
+        return $this->redirectToRoute('app_login');
     }
 
        /* Pour avoir la vue du formulaire */
