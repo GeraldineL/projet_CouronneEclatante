@@ -1,5 +1,6 @@
 <?php
 
+/* Cette page nous permet d'avoir le back-end de la page "Devenir Membre */
 namespace App\Form;
 
 use App\Entity\User;
@@ -34,20 +35,27 @@ class RegistrationFormType extends AbstractType
             ->add('codeFacturation', TextType::class)
 
 
+        /* C'est cette partie qui est configurée pour le mot de passe */
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => "Le mot de passe doit être identique, veuillez recommencer.",
+                'required' => true,
+            ])
+
+            /* Cette partie permet de faire accepter les conditions d'utilisation du site */
             ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
+                'mapped' => false, /* cette propriété ne se trouve pas dans le champs de User */
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Acceptez nos conditions.',
+                        'message' => " Veuillez lire et accepter les conditions d'utilisation.",
                     ]),
                 ],
             ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'Le mot de passe est différent, veuillez recommencer.',
-                'required' => true,
-            ])
+
+
+
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

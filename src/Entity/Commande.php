@@ -24,8 +24,8 @@ class Commande
     #[ORM\Column(length: 255)]
     private ?string $User = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $manytoone = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $manytoone = null;
 
     #[ORM\ManyToOne(inversedBy: 'Commande')]
     private ?User $user = null;
@@ -101,17 +101,17 @@ class Commande
         return $this;
     }
 
-    public function getManytoone(): ?string
-    {
-        return $this->manytoone;
-    }
+    // public function getManytoone(): ?string
+    // {
+    //     return $this->manytoone;
+    // }
 
-    public function setManytoone(string $manytoone): static
-    {
-        $this->manytoone = $manytoone;
+    // public function setManytoone(string $manytoone): static
+    // {
+    //     $this->manytoone = $manytoone;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getDetailscommande(): ?self
     {

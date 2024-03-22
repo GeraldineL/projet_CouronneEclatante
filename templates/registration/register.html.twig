@@ -15,42 +15,51 @@
                 {# {{form_row(registrationForm.user) }}#}   {#nom d'utilisateur #}
                     <div class="mb-3">
                         <label for="registration_form_prenom">Prénom</label>
+                        <div class="text-danger">{{form_errors(registrationForm.prenom)}}</div>
                         {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }} {# pour afficher le label où on peut écrire le prénom#}
                     </div>
                     <div class="mb-3">
                         <label for="registration_form_nom">Nom</label>
+                        <div class="text-danger">{{form_errors(registrationForm.nom)}}</div>
                         {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }} {# pour afficher le label où on peut écrire le nom#}
                     </div>
                     <div class="mb-3">
                         <label for="registration_form_email">Email</label>
+                        <div class="text-danger">{{form_errors(registrationForm.email)}}</div>
                         {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }} {# mail utilisateur #}
                     </div>
                     <div class="mb-3">
                         <label for="registration_form_telephone">Téléphone</label>
+                        <div class="text-danger">{{form_errors(registrationForm.telephone)}}</div>
                         {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }} {# téléphone #}
                     </div>
                     <div class="mb-3">
-                    <div class="mb-3">
                         <label for="registration_form_adresseFacturation">Adresse </label>
+                        <div class="text-danger">{{form_errors(registrationForm.adresseFacturation)}}</div>
                         {{ form_widget(registrationForm.adresseFacturation, {'attr': {'class': 'form-control'}}) }} {# adresseFacturation #}
                     </div>
                      <div class="mb-3">
                         <label for="registration_form_villeFacturation">Ville </label>
+                         <div class="text-danger">{{form_errors(registrationForm.villeFacturation)}}</div>
                         {{ form_widget(registrationForm.villeFacturation, {'attr': {'class': 'form-control'}}) }} {# villeFacturation #}
                     </div>
                     <div class="mb-3">
                         <label for="registration_form_codeFacturation">Code Postal</label>
+                         <div class="text-danger">{{form_errors(registrationForm.codeFacturation)}}</div>
                         {{ form_widget(registrationForm.codeFacturation, {'attr': {'class': 'form-control'}}) }} {# villeFacturation #}
                     </div>
                     <div class="mb-3"
                         <label for="registration_form_password_first">Mot de passe</label>
+                         <div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
                         {{ form_widget(registrationForm.password.first, {'attr': {'class': 'form-control'}}) }} {# mot de passe #}
                     </div>
                     <div class="mb-3">
                         <label for="registration_form_password_second">Confirmation  du mot de passe</label>
+                         <div class="text-danger">{{form_errors(registrationForm.password.second)}}</div>
                         {{ form_widget(registrationForm.password.second, {'attr': {'class': 'form-control'}}) }} {# confirmation mot de passe #}
                     </div>
                     <div class="mb-3">
+                         <div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>
                         <label for="registration_form_agreeTerms">
                             {{ form_widget(registrationForm.agreeTerms) }}
                             Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#agreeTermsModal">les conditions générales d'utilisation</a>
@@ -61,6 +70,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Lire les conditions générales d'utilisation</h1>
+                                        {# Ci-dessous, fenêtre modale pour les conditions d'utilisation #}
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -78,7 +88,7 @@
                     
 
 
-                    <button type="submit" class="btn btn-primary">Enregistrer</button> {# bouton enregistrer #}
+                    <button formnovalidate type="submit" class="btn btn-primary">Enregistrer</button> {# bouton enregistrer #}
                 {{ form_end(registrationForm) }}
             </div>
         </div>

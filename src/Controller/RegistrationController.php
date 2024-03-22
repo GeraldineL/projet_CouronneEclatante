@@ -14,14 +14,23 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
+    #[Route('/register', name: 'app_register', methods: ['GET', 'POST'])] /* Méthode GET pour accéder au formulaire et méthode POST pour traiter les données du formulaire */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');/* si l'utilisateur qui est déjà connecté essaie de se reconnecter on le redirige vers page d'accueil 'home' */
+        }
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
+        /* On associe les données du formulaire au formulaire */
         $form->handleRequest($request);
 
+        /* Si le formulaire est soumis et si le formulaire est valide */
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /* On pourra entrer dans la condition et effectuer des actions */
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

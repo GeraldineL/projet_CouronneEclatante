@@ -53,23 +53,30 @@
                    <li class="nav-item">
                       <a class="nav-link" href="{{path('app_contact')}}">Contact</a>
                   </li>
-                  
-                  <a href="{{path('app_login')}}" class="btn btn-pink my-3 my-lg-0">Connexion</a> {# pour se connecter au site peu importe le statut de l'utilisateur #}
-                  <a href="{{path('app_register')}}" class="btn btn-pink my-3 my-lg-0 mx-lg-2">Devenir Membre</a>{# Formulaire d'inscription #}
+                  {% if app.user is empty %}
+                    <a href="{{path('app_login')}}" class="btn btn-pink my-3 my-lg-0">Connexion</a> {# pour se connecter au site peu importe le statut de l'utilisateur #}
+                    <a href="{{path('app_register')}}" class="btn btn-pink my-3 my-lg-0 mx-lg-2">Devenir Membre</a>{# Formulaire d'inscription #}
+                  {% endif %}
                 
               </ul>
               {% if app.user %} {# si l'user est connecté #}
               <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                       <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
-                          {{app.user.firstName}}
+                          {{app.user.prenom}}
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end">
+                      {# Ci-dessous la condition 'if' qui garantit que seul l'administrateur peut se connecter à l'espace admin #}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a class="dropdown-item" href="{{path('admin_home_index')}}">Espace admin</a>
+                                </li>
+                            {% endif %}
                           <li>
-                              <a class="dropdown-item" href="{{path(' ')}}">Espace client</a>
+                              <a class="dropdown-item" href="{{path('user_home_index')}}">Espace client</a>
                           </li>
                           <li>
-                              <a class="dropdown-item" href="{{path(' ')}}">Déconnexion</a>
+                              <a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
                           </li>
                       </ul>
                   </li>

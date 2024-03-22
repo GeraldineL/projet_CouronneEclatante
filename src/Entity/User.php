@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+/* Classe importée à partir de la documentation Symfony Notblank : https://symfony.com/doc/current/reference/constraints/NotBlank.html*/
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -19,6 +22,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    /* #[Assert\NotBlank] ci-dessous a été copié/collé à partir de la documentation Symfony Notblank-Tant que l'utilisateur n'a pas rempli son mail, il ne pourra jamais envoyer le formulaire */
+    #[Assert\NotBlank(message: "L' email est obligatoire.")]
+    #[Assert\Length(
+        max: 180,
+        maxMessage: "L' email ne doit pas dépasser {{ limit }} caractères", 
+    )] 
+    #[Assert\Email(
+        message: 'L\'email {{ value }} n\'est pas valide.',
+    )]   
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -28,32 +40,109 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
+    #[Assert\Length(
+        min: 12,
+        max: 255,
+        minMessage: "Le mot de passe doit contenir au minimum {{ limit }} caractères.",
+        maxMessage: "Le mot de passe doit contenir au maximum {{ limit }} caractères.",
+    )]
+    #[Assert\Regex(
+        pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9]).{11,255}$/",
+        match: true,
+        message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
+    )]
+    #[Assert\NotCompromisedPassword(message: "Ce mot de passe est facilement piratable! Veuillez en choisir un autre.")]
     #[ORM\Column]
     private ?string $password = null;
 
+
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    /* #[Assert\Length] ci-dessous a été copié/collé à partir de la documentation Symfony*/
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        maxMessage: 'Le nom ne doit pas dépasser {{ limit }} caractères', )]
+        /* #[Assert\Regex] ci-dessous a été copié/collé à partir de la documentation Symfony*/
+    #[Assert\Regex(
+            pattern: "/^[0-9a-zA-Z-_' áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/i",
+            match: true,
+            message: " Le nom doit contenir uniquement des lettres, des chiffres,le tiret du milieu de l'undescore",
+        )]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
     // #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     // private $createdAt;
-
-    #[ORM\Column(length: 255, nullable: true)]
+     /* #[Assert\NotBlank] ci-dessous a été copié/collé à partir de la documentation Symfony Notblank-Tant que l'utilisateur n'a pas rempli son prénom, il ne pourra jamais envoyer le formulaire */
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    /* #[Assert\Length] ci-dessous a été copié/collé à partir de la documentation Symfony*/
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        maxMessage: 'Le prénom ne doit pas dépasser {{ limit }} caractères', )]
+        /* #[Assert\Regex] ci-dessous a été copié/collé à partir de la documentation Symfony*/
+    #[Assert\Regex(
+            pattern: "/^[0-9a-zA-Z-_' áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/i",
+            match: true,
+            message: " Le prénom doit contenir uniquement des lettres, des chiffres,le tiret du milieu de l'undescore",
+        )]
+    #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+
+
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Length(
+        min: 6,
+        max: 255,
+        minMessage: 'Le numéro de téléphone doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le numéro de téléphone ne doit pas dépasser {{ limit }} caractères'
+    )]
+    #[Assert\Regex(
+        pattern: "/^[0-9\-\+\s\(\)]+$/",
+        match: true,
+        message: " Le numéro de téléphone n'est pas valide.",
+    )]
+    #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+
+    #[Assert\NotBlank(message: "L'adresse est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'L\'adresse ne doit pas dépasser {{ limit }} caractères'
+    )]
+    /* Axe d'amélioration pour la suite, proposer un système de connexion à google map pour vérifier si l'adresse est réelle et valide */
+    #[ORM\Column(length: 255)]
     private ?string $adresseFacturation = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+
+    #[Assert\NotBlank(message: "La ville est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'La ville de facturation ne doit pas dépasser {{ limit }} caractères'
+    )]
+    #[ORM\Column(length: 255)]
     private ?string $villeFacturation = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+
+    #[Assert\NotBlank(message: "Le code de facturation est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le code de facturation ne doit pas dépasser {{ limit }} caractères'
+    )]
+    #[ORM\Column(length: 255)]
     private ?string $codeFacturation = null;
+
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
     private Collection $Commande;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdAt = null;
+
+
 
     public function __construct()
     {
@@ -212,6 +301,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getCommande(): Collection
     {
         return $this->Commande;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
 }
