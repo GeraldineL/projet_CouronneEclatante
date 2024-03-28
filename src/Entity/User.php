@@ -47,13 +47,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: "Le mot de passe doit contenir au minimum {{ limit }} caractères.",
         maxMessage: "Le mot de passe doit contenir au maximum {{ limit }} caractères.",
     )]
-    #[Assert\Regex(
+    /* Cette partie ci-dessous correspond aux contraintes pour le mot de passe-fait avec aide de Jean-Claude/Consultation des documents symfony */
+     #[Assert\Regex(
         pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9]).{11,255}$/",
         match: true,
         message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
     )]
     #[Assert\NotCompromisedPassword(message: "Ce mot de passe est facilement piratable! Veuillez en choisir un autre.")]
-    #[ORM\Column]
+    #[ORM\Column] 
     private ?string $password = null;
 
 

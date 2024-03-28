@@ -48,7 +48,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+
         // For example:
+        /* Toute personne qu'elle soit utilisateur, admin ou super_admin est redirigée vers page d'accueil "home" quand elle se connecte */
         return new RedirectResponse($this->urlGenerator->generate('home'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
